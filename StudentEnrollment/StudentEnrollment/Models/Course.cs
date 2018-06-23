@@ -12,6 +12,24 @@ namespace StudentEnrollment.Models
 
         public string Name { get; set; }
 
+        public Term CourseTerm { get; set; }
+
         public List<Student> students;
     }
+
+    public enum CourseTerm
+    {
+        Summer2018 = 1,
+        Fall2018,
+        Winter2018,
+        Spring2019
+    }
+
+    //public enum CourseName
+    //{
+    //    [Display(Name = "C#")] CSharp = 1,
+    //    Java,
+    //    JavaScript,
+    //    Python
+    //}   
 }

@@ -23,9 +23,9 @@ namespace StudentEnrollment.Controllers
         public async Task<IActionResult> Index(string courseName, string searchString)
         {
             // Use LINQ to get list of students.
-            IQueryable<string> courseQuery = from c in _context.Courses
-                                            orderby c.ID
-                                            select c.Name;
+            IQueryable<CourseName> courseQuery = from c in _context.Students
+                                            orderby c.CourseName
+                                            select c.CourseName;
 
             var students = from m in _context.Students
                          select m;
@@ -35,7 +35,7 @@ namespace StudentEnrollment.Controllers
                 students = students.Where(s => s.Name.Contains(searchString));
             }
 
-            if (!String.IsNullOrEmpty(courseName))
+            if (courseName.ToString() != "")
             {
                 students = students.Include(x => x.CourseName.ToString());
             }

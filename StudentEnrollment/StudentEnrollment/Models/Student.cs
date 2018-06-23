@@ -14,9 +14,27 @@ namespace StudentEnrollment.Models
         [Required]
         public string Name { get; set; }
 
+        public Level Level { get; set; }
+
+        public Term EnrollmentTerm { get; set; }
+
         [Required]
         [Display(Name = "Course")]
         public CourseName CourseName { get; set; }
+    }
+
+    public enum Level
+    {
+        Undergraduate,
+        Graduate
+    }
+
+    public enum Term
+    {
+        Summer2018 = 1,
+        Fall2018,
+        Winter2018,
+        Spring2019
     }
 
     public enum CourseName

@@ -4,22 +4,30 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Students</h2>
+<link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="~/css/base.css" type="text/css" />
+<link rel="stylesheet" href="~/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="~/css/modules.css" type="text/css" />
 
-<p>
-    <a asp-action="Create">Create New Student</a>
-</p>
+<div class="label">
+    <h2>Students</h2>
+</div>
 
-<form asp-controller="Student" asp-action="Index" method="get">
+<div class="search">
     <p>
-        <select asp-for="courses" asp-items="Model.courses">
-            <option value="">All</option>
-        </select>
-
-        Title: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
+        <a asp-action="Create">Create New Student</a>
     </p>
-</form>
+    <form asp-controller="Student" asp-action="Index" method="get">
+        <p>
+            <select asp-for="courseName" asp-items="Model.courses">
+                <option value="">All</option>
+            </select>
+
+            Title: <input type="text" name="SearchString">
+            <input type="submit" value="Filter" class="button" />
+        </p>
+    </form>
+</div>
 
 <table class="table">
     <thead>
@@ -32,6 +40,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.students[0].CourseName)
+            </th>
+            <th>
+                Options
             </th>
         </tr>
     </thead>
@@ -48,11 +59,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CourseName)
                 </td>
-                @*<td>
+                <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                </td>*@
+                </td>
             </tr>
         }
     </tbody>
