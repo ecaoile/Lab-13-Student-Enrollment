@@ -10,16 +10,8 @@ namespace StudentEnrollment.Models
     {
         public int ID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
         public List<Student> students;
     }
-
-    //public enum Name
-    //{
-    //    [Display(Name = "C# and ASP.NET Core")]CSharp,
-    //    Java,
-    //    JavaScript,
-    //    Python
-    //}
 }

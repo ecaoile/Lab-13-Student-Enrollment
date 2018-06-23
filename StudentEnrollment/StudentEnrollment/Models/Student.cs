@@ -15,12 +15,13 @@ namespace StudentEnrollment.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Course")]
         public CourseName CourseName { get; set; }
     }
 
     public enum CourseName
     {
-        [Display(Name = "C# and ASP.NET Core")] CSharp = 1,
+        [Display(Name = "C#")] CSharp = 1,
         Java,
         JavaScript,
         Python

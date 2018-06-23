@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StudentEnrollment.Data;
 using StudentEnrollment.Models;
 using System;
@@ -17,10 +19,34 @@ namespace StudentEnrollment.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Students
+        public async Task<IActionResult> Index(string courseName, string searchString)
         {
-            return View();
+            // Use LINQ to get list of students.
+            IQueryable<string> courseQuery = from c in _context.Courses
+                                            orderby c.ID
+                                            select c.Name;
+
+            var students = from m in _context.Students
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.Name.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(courseName))
+            {
+                students = students.Include(x => x.CourseName.ToString());
+            }
+
+            var studentListingVM = new StudentListingViewModel();
+            studentListingVM.courses = new SelectList(await courseQuery.Distinct().ToListAsync());
+            studentListingVM.students = await students.ToListAsync();
+
+            return View(studentListingVM);
         }
+
         /// <summary>
         /// get: create student
         /// </summary>
