@@ -5,5 +5,11 @@
 
 body {
     margin: 0 auto;
-    background-color: #f2f2f2;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5em;
+}
+
+div
+{
+    margin-left:2em;
 }
