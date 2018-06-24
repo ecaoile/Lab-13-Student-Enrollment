@@ -1,8 +1,4 @@
-﻿.search, div.label {
-    padding: .5em 5em;
-}
-
-table {
+﻿table {
     background-color: #EFF6FE;
     /*border: 1px solid #757575;*/
     /*margin-left: auto;
@@ -10,7 +6,7 @@ table {
     text-align: center;
     position:relative;
     margin: 0 auto;
-    max-width:85vw;
+    width: 85vw;
 }
 
 table, th, td {

@@ -35,7 +35,7 @@ namespace StudentEnrollment.Controllers
                 students = students.Where(s => s.Name.Contains(searchString));
             }
 
-            if (courseName.ToString() != "")
+            if (!String.IsNullOrEmpty(courseName))
             {
                 students = students.Include(x => x.CourseName.ToString());
             }
@@ -67,6 +67,24 @@ namespace StudentEnrollment.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
+        }
+
+        // GET: Student/Details/
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Students
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
         }
     }
 }

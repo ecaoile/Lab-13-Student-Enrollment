@@ -4,8 +4,22 @@
     margin: 0 1em;
 }
 
-    .button:hover {
-        background-color: #0b5351;
-        color: #fff;
-        transition: background 0.2s ease-in-out;
+.search, div.title {
+    padding: .5em 3.5em;
+}
+
+.button:hover {
+    background-color: #0b5351;
+    color: #fff;
+    transition: background 0.2s ease-in-out;
+}
+
+.detail-info {
+    padding: .25em 2.75em;
+}
+
+@media only screen and (max-width: 765px){
+    .detail-info {
+        margin-left:2em;
     }
+}
