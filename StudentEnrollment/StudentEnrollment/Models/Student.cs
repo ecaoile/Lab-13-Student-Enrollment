@@ -14,13 +14,13 @@ namespace StudentEnrollment.Models
         [Required]
         public string Name { get; set; }
 
+        [Required]
         public Level Level { get; set; }
 
-        [Display(Name = "Enrollment Term")]
-        public Term EnrollmentTerm { get; set; }
+        [Required, Display(Name = "Enrollment Term")]
+        public EnrollmentTerm EnrollmentTerm { get; set; }
 
-        [Required]
-        [Display(Name = "Enrolled Course")]
+        [Required, Display(Name = "Enrolled Course")]
         public CourseName CourseName { get; set; }
     }
 
@@ -30,7 +30,7 @@ namespace StudentEnrollment.Models
         Graduate
     }
 
-    public enum Term
+    public enum EnrollmentTerm
     {
         [Display(Name = "Summer 2018")] Summer2018 = 1,
         [Display(Name = "Fall 2018")] Fall2018,

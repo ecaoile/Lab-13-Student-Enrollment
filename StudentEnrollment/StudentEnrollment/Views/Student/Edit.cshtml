@@ -1,7 +1,7 @@
-﻿@model Student;
+﻿@model StudentEnrollment.Models.Student
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
@@ -11,16 +11,19 @@
 <link rel="stylesheet" href="~/css/modules.css" type="text/css" />
 
 <div class="title">
-    <h2>Create Student</h2>
+    <h2>Edit</h2>
 </div>
-<hr />
-<div class="row">
-    <div class="col-md-4, create">
-        <form method="post" asp-action="Create">
+<div class="row, edit">
+        <h4>Student</h4>
+        <hr />
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Name:</label>
-                <input asp-for="Name" />
-                <span asp-validation-for="Name"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Level">Level</label>
@@ -47,8 +50,8 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
-    </div>
-</div>
-<div class="options">
+<div>
     <a asp-action="Index">Back to List</a>
+</div>
+    </div>
 </div>

@@ -12,7 +12,7 @@ namespace StudentEnrollment.Models
 
         public string Name { get; set; }
 
-        public Term CourseTerm { get; set; }
+        public CourseTerm CourseTerm { get; set; }
 
         public List<Student> students;
     }

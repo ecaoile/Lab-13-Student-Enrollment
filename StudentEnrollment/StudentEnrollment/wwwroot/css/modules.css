@@ -8,7 +8,9 @@
     padding: .5em 2.75em;
 }
 
-
+div > h4 {
+    margin-left: 2.25em;
+}
 .button:hover {
     background-color: #0b5351;
     color: #fff;
@@ -27,6 +29,13 @@ div.table-cont th {
     text-align: center;
 }
 
+div.options {
+    margin-left:3.5em;
+}
+
+.create {
+    margin-left:3.5em;
+}
 @media only screen and (max-width: 765px){
     .detail-info {
         margin-left:2em;

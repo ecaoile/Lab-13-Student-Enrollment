@@ -20,7 +20,7 @@ namespace StudentEnrollment.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index(string courseName, string searchString)
+        public async Task<IActionResult> Index(CourseName courseName, string searchString)
         {
             // Use LINQ to get list of students.
             IQueryable<CourseName> courseQuery = from c in _context.Students
@@ -35,9 +35,9 @@ namespace StudentEnrollment.Controllers
                 students = students.Where(s => s.Name.Contains(searchString));
             }
 
-            if (!String.IsNullOrEmpty(courseName))
+            if ((int)courseName != 0)
             {
-                students = students.Include(x => x.CourseName.ToString());
+                students = students.Where(x => x.CourseName == courseName);
             }
 
             var studentListingVM = new StudentListingViewModel();
@@ -77,14 +77,63 @@ namespace StudentEnrollment.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Students
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (movie == null)
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(student);
+        }
+
+        // GET: Student/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        // GET: Student/Delete/id#
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var student = await _context.Students.
+                FirstOrDefaultAsync(s => s.ID == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
+        }
+
+        // POST: Student/Delete/id#
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var student = await _context.Students.FindAsync(id);
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool StudentExists(int id)
+        {
+            return _context.Students.Any(s => s.ID == id);
         }
     }
 }
