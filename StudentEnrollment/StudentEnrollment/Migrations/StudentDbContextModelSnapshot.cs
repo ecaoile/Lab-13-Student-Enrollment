@@ -7,7 +7,7 @@ using StudentEnrollment.Data;
 
 namespace StudentEnrollment.Migrations
 {
-    [DbContext(typeof(StudentDbContext))]
+    [DbContext(typeof(SchoolDbContext))]
     partial class StudentDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

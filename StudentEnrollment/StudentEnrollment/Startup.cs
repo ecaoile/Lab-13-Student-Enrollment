@@ -26,7 +26,7 @@ namespace StudentEnrollment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<StudentDbContext>(options =>
+            services.AddDbContext<SchoolDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

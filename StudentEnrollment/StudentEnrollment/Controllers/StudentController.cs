@@ -12,9 +12,9 @@ namespace StudentEnrollment.Controllers
 {
     public class StudentController : Controller
     {
-        public readonly StudentDbContext _context;
+        public readonly SchoolDbContext _context;
 
-        public StudentController(StudentDbContext context)
+        public StudentController(SchoolDbContext context)
         {
             _context = context;
         }
@@ -35,7 +35,7 @@ namespace StudentEnrollment.Controllers
                 students = students.Where(s => s.Name.Contains(searchString));
             }
 
-            if ((int)courseName != 0)
+            if (courseName != 0)
             {
                 students = students.Where(x => x.CourseName == courseName);
             }
@@ -87,7 +87,7 @@ namespace StudentEnrollment.Controllers
             return View(student);
         }
 
-        // GET: Student/Edit/5
+        // GET: Student/Edit/id#
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,6 +103,38 @@ namespace StudentEnrollment.Controllers
             return View(student);
         }
 
+        // POST: Student/Edit/id#
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,EnrollmentTerm,CourseName")] Student student)
+        {
+            if (id != student.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(student);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!StudentExists(student.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(student);
+        }
         // GET: Student/Delete/id#
         public async Task<IActionResult> Delete(int? id)
         {

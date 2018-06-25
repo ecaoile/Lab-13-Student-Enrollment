@@ -8,7 +8,7 @@ using StudentEnrollment.Data;
 
 namespace StudentEnrollment.Migrations
 {
-    [DbContext(typeof(StudentDbContext))]
+    [DbContext(typeof(SchoolDbContext))]
     [Migration("20180625003945_sixth")]
     partial class sixth
     {

@@ -22,6 +22,10 @@ namespace StudentEnrollment.Models
 
         [Required, Display(Name = "Enrolled Course")]
         public CourseName CourseName { get; set; }
+
+        public Course Course { get; set; }
+
+        public int CourseID { get; set; }
     }
 
     public enum Level
@@ -43,6 +47,10 @@ namespace StudentEnrollment.Models
         [Display(Name = "C#")] CSharp = 1,
         Java,
         JavaScript,
-        Python
+        Python,
+        [Display(Name = "Advanced Anger Management")]AngerMgmt,
+        Biology,
+        Psychology,
+        Calculus
     }
 }
