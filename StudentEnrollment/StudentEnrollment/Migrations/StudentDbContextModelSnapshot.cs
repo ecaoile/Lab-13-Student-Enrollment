@@ -18,13 +18,30 @@ namespace StudentEnrollment.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("StudentEnrollment.Models.Course", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseTerm");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Teacher");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Courses");
+                });
+
             modelBuilder.Entity("StudentEnrollment.Models.Student", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CourseName");
+                    b.Property<int>("CourseID");
 
                     b.Property<int>("EnrollmentTerm");
 
@@ -35,7 +52,17 @@ namespace StudentEnrollment.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CourseID");
+
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("StudentEnrollment.Models.Student", b =>
+                {
+                    b.HasOne("StudentEnrollment.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

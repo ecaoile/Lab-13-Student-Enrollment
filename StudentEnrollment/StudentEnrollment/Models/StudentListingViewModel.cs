@@ -10,6 +10,6 @@ namespace StudentEnrollment.Models
     {
         public List<Student> students;
         public SelectList courses;
-        public CourseName courseName { get; set; }
+        public string courseName { get; set; }
     }
 }

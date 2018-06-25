@@ -20,12 +20,13 @@ namespace StudentEnrollment.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index(CourseName courseName, string searchString)
+        public async Task<IActionResult> Index(string courseName, string searchString)
         {
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
             // Use LINQ to get list of students.
-            IQueryable<CourseName> courseQuery = from c in _context.Students
-                                            orderby c.CourseName
-                                            select c.CourseName;
+            IQueryable<string> courseQuery = from c in _context.Students
+                                            orderby c.Course.Name
+                                            select c.Course.Name;
 
             var students = from m in _context.Students
                          select m;
@@ -35,9 +36,9 @@ namespace StudentEnrollment.Controllers
                 students = students.Where(s => s.Name.Contains(searchString));
             }
 
-            if (courseName != 0)
+            if (!String.IsNullOrEmpty(courseName))
             {
-                students = students.Where(x => x.CourseName == courseName);
+                students = students.Where(x => x.Course.Name == courseName);
             }
 
             var studentListingVM = new StudentListingViewModel();
@@ -51,8 +52,11 @@ namespace StudentEnrollment.Controllers
         /// get: create student
         /// </summary>
         /// <returns>view</returns>
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
+            //var courseListingVM = await _context.Courses.Select(c => c).ToListAsync();
+
             return View();
         }
 

@@ -20,8 +20,8 @@ namespace StudentEnrollment.Models
         [Required, Display(Name = "Enrollment Term")]
         public EnrollmentTerm EnrollmentTerm { get; set; }
 
-        [Required, Display(Name = "Enrolled Course")]
-        public CourseName CourseName { get; set; }
+        //[Required, Display(Name = "Enrolled Course")]
+        //public CourseName CourseName { get; set; }
 
         public Course Course { get; set; }
 
@@ -42,15 +42,15 @@ namespace StudentEnrollment.Models
         [Display(Name = "Spring 2019")] Spring2019
     }
 
-    public enum CourseName
-    {
-        [Display(Name = "C#")] CSharp = 1,
-        Java,
-        JavaScript,
-        Python,
-        [Display(Name = "Advanced Anger Management")]AngerMgmt,
-        Biology,
-        Psychology,
-        Calculus
-    }
+    //public enum CourseName
+    //{
+    //    [Display(Name = "C#")] CSharp = 1,
+    //    Java,
+    //    JavaScript,
+    //    Python,
+    //    [Display(Name = "Advanced Anger Management")]AngerMgmt,
+    //    Biology,
+    //    Psychology,
+    //    Calculus
+    //}
 }

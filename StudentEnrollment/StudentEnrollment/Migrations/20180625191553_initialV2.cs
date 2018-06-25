@@ -2,7 +2,7 @@
 
 namespace StudentEnrollment.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialV2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
