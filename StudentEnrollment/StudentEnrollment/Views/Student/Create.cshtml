@@ -1,6 +1,8 @@
 ﻿@model Student;
+@inject StudentEnrollment.Data.SchoolDbContext _context
 
 @{
+    var context = _context.Courses.Select(c => c).ToList();
     ViewData["Title"] = "Create";
 }
 
@@ -20,7 +22,7 @@
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Name:</label>
                 <input asp-for="Name" />
-                <span asp-validation-for="Name"></span>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Level">Level</label>
@@ -37,8 +39,7 @@
                 <span asp-validation-for="EnrollmentTerm" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourseID">Course:</label>
-                @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)ViewData["Courses"], "ID", "Name", "Teacher", "CourseTerm")))
+                @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)@context, "ID", "Name", "Teacher", "CourseTerm")))
                 <span asp-validation-for="CourseID" class="text-danger"></span>
             </div>
             <div class="form-group">

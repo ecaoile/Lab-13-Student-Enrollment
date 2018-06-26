@@ -23,7 +23,7 @@ namespace StudentEnrollment.Controllers
         public async Task<IActionResult> Index(string courseName, string searchString)
         {
             var courses = from m in _context.Courses
-                           select m;
+                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -36,23 +36,16 @@ namespace StudentEnrollment.Controllers
             return View(courseListingVM);
         }
 
-        /// <summary>
-        /// get method for creating a course
-        /// </summary>
-        /// <returns>view</returns>
+        // GET: Course/Create/
         public IActionResult Create()
         {
             return View();
         }
 
-        /// <summary>
-        /// post method for creating a course
-        /// </summary>
-        /// <param name="course">course object</param>
-        /// <returns>view</returns>
+        // POST: Course/Create/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Course course)
+        public async Task<IActionResult> Create([Bind("ID,Name,Teacher,CourseTerm")]Course course)
         {
             if (ModelState.IsValid)
             {
@@ -136,18 +129,6 @@ namespace StudentEnrollment.Controllers
             {
                 return RedirectToAction("Index");
             }
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-            //var course = await _context.Courses.
-            //    FirstOrDefaultAsync(s => s.ID == id);
-            //if (course == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return View(course);
         }
 
         // POST: Course/Delete/id#
@@ -160,6 +141,7 @@ namespace StudentEnrollment.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool CourseExists(int id)
         {
             return _context.Courses.Any(s => s.ID == id);

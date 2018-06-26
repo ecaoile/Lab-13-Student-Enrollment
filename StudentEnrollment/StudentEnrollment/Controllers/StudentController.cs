@@ -48,10 +48,7 @@ namespace StudentEnrollment.Controllers
             return View(studentListingVM);
         }
 
-        /// <summary>
-        /// get: create student
-        /// </summary>
-        /// <returns>view</returns>
+        // GET: Student/Create
         public async Task<IActionResult> Create()
         {
             ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
@@ -60,6 +57,7 @@ namespace StudentEnrollment.Controllers
             return View();
         }
 
+        // POST: Student/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Level,EnrollmentTerm,Course,CourseID")]Student student)
@@ -70,10 +68,12 @@ namespace StudentEnrollment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
+
             return View(student);
         }
 
-        // GET: Student/Details/
+        // GET: Student/Details/id#
         public async Task<IActionResult> Details(int? id)
         {
             ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
@@ -142,9 +142,11 @@ namespace StudentEnrollment.Controllers
             }
             return View(student);
         }
+
         // GET: Student/Delete/id#
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
             if (id == null)
             {
                 return NotFound();

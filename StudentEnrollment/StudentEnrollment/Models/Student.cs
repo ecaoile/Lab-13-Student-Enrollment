@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static System.ComponentModel.DataAnnotations.ValidationAttribute;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentEnrollment.Models;
@@ -11,13 +12,15 @@ namespace StudentEnrollment.Models
     {
         public int ID { get; set; }
 
-        [StringLength(60, MinimumLength = 3), Required]
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]
         public Level Level { get; set; }
 
-        [Required, Display(Name = "Enrollment Term")]
+        [Required]
+        [Display(Name = "Enrollment Term")]
         public EnrollmentTerm EnrollmentTerm { get; set; }
 
         public Course Course { get; set; }

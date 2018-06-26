@@ -10,10 +10,13 @@ namespace StudentEnrollment.Models
     {
         public int ID { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Teacher { get; set; }
 
+        [Required]
         public CourseTerm CourseTerm { get; set; }
     }
 
