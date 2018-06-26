@@ -15,8 +15,6 @@ namespace StudentEnrollment.Models
         public string Teacher { get; set; }
 
         public CourseTerm CourseTerm { get; set; }
-
-        //public List<Student> students;
     }
 
     public enum CourseTerm

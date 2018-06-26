@@ -19,14 +19,9 @@ namespace StudentEnrollment.Controllers
             _context = context;
         }
 
-        // GET: Courses
+        // GET: Course
         public async Task<IActionResult> Index(string courseName, string searchString)
         {
-            // Use LINQ to get list of students.
-            IQueryable<string> courseQuery = from c in _context.Students
-                                             orderby c.Course.Name
-                                             select c.Course.Name;
-
             var courses = from m in _context.Courses
                            select m;
 
@@ -41,11 +36,20 @@ namespace StudentEnrollment.Controllers
             return View(courseListingVM);
         }
 
+        /// <summary>
+        /// get method for creating a course
+        /// </summary>
+        /// <returns>view</returns>
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// post method for creating a course
+        /// </summary>
+        /// <param name="course">course object</param>
+        /// <returns>view</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Course course)
@@ -111,9 +115,6 @@ namespace StudentEnrollment.Controllers
         // GET: Course/Details/
         public async Task<IActionResult> Details(int? id)
         {
-            //ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
-            //ViewData["Students"] = await _context.Students.Select(s => s).ToListAsync();
-
             if (id.HasValue)
             {
                 return View(await CourseDetailViewModel.FromIDAsync(id.Value, _context));
@@ -122,12 +123,25 @@ namespace StudentEnrollment.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
 
-            //var courseDetails = _context.CourseDetails.FromIDAsync(id);
-            //var course = await _context.Courses
-            //    .FirstOrDefaultAsync(m => m.ID == id);
-
-            
+        // GET: Course/Delete/id#
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                return View(await CourseDetailViewModel.FromIDAsync(id.Value, _context));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            //var course = await _context.Courses.
+            //    FirstOrDefaultAsync(s => s.ID == id);
             //if (course == null)
             //{
             //    return NotFound();
@@ -136,6 +150,16 @@ namespace StudentEnrollment.Controllers
             //return View(course);
         }
 
+        // POST: Course/Delete/id#
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var course = await _context.Courses.FindAsync(id);
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         private bool CourseExists(int id)
         {
             return _context.Courses.Any(s => s.ID == id);
