@@ -1,4 +1,4 @@
-﻿@model StudentEnrollment.Models.Student
+﻿@model Student;
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,8 +14,8 @@
     <h2>Edit</h2>
 </div>
 <div class="row, edit">
-        <h4>Student</h4>
-        <hr />
+    <h4>Student</h4>
+    <hr />
     <div class="col-md-4">
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -48,8 +48,8 @@
                 <input type="submit" value="Edit" class="btn btn-default" />
             </div>
         </form>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
 </div>

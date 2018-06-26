@@ -10,20 +10,7 @@ namespace StudentEnrollment.Models
 {
     public class CourseListingViewModel
     {
-        public IEnumerable<Student> Students { get; set; }
         public Course Course { get; set; }
         public List<Course> Courses { get; set; }
-
-        public static async Task<CourseListingViewModel> FromIDAsync(int id, SchoolDbContext context)
-        {
-            CourseListingViewModel cvm = new CourseListingViewModel();
-
-            cvm.Course = await context.Courses.Where(c => c.ID == id).SingleAsync();
-
-            cvm.Students = await context.Students.Where(s => s.Course == cvm.Course)
-                                                .Select(s => s)
-                                                .ToListAsync();
-            return cvm;
-        }
     }
 }

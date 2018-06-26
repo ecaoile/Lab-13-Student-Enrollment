@@ -108,6 +108,34 @@ namespace StudentEnrollment.Controllers
             return View(course);
         }
 
+        // GET: Course/Details/
+        public async Task<IActionResult> Details(int? id)
+        {
+            //ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
+            //ViewData["Students"] = await _context.Students.Select(s => s).ToListAsync();
+
+            if (id.HasValue)
+            {
+                return View(await CourseDetailViewModel.FromIDAsync(id.Value, _context));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+            //var courseDetails = _context.CourseDetails.FromIDAsync(id);
+            //var course = await _context.Courses
+            //    .FirstOrDefaultAsync(m => m.ID == id);
+
+            
+            //if (course == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return View(course);
+        }
+
         private bool CourseExists(int id)
         {
             return _context.Courses.Any(s => s.ID == id);

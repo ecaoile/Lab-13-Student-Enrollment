@@ -39,9 +39,6 @@
             <div class="form-group">
                 <label asp-for="CourseID">Course:</label>
                 @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)ViewData["Courses"], "ID", "Name", "Teacher", "CourseTerm")))
-                @*<select asp-for="CourseName" asp-items="Html.GetEnumSelectList<CourseName>()">
-            <option value="">--- not specified ---</option>
-        </select>*@
                 <span asp-validation-for="CourseID" class="text-danger"></span>
             </div>
             <div class="form-group">

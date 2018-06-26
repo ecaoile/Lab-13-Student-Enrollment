@@ -20,9 +20,6 @@ namespace StudentEnrollment.Models
         [Required, Display(Name = "Enrollment Term")]
         public EnrollmentTerm EnrollmentTerm { get; set; }
 
-        //[Required, Display(Name = "Enrolled Course")]
-        //public CourseName CourseName { get; set; }
-
         public Course Course { get; set; }
 
         [Required]
