@@ -1,8 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/base.css" type="text/css" />
+<link rel="stylesheet" href="~/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="~/css/modules.css" type="text/css" />
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-<h2>testing 1-2-3</h2>
+<div class="center" id="home">
+    <h1>Student Enrollment Admin Portal</h1>
+    <h3>@ViewData["Message"]</h3>
+    <img src="http://i0.kym-cdn.com/entries/icons/original/000/000/055/domo_kun.jpg" alt="ASP.NET" class="img-responsive" />
+    <p>Welcome to the admin portal Please select a page:</p>
+    <form id="admin-options">
+        <input type="button" class="admin-button" value="Students" onclick="window.location.href='/Student'" />
+        <input type="button" class="admin-button" value="Courses" onclick="window.location.href='/Course'" />
+    </form>
+</div>

@@ -17,6 +17,17 @@ div > h4 {
     transition: background 0.2s ease-in-out;
 }
 
+.admin-button {
+    padding: .5em 1em;
+    margin: 1em;
+    border-radius: 5px;
+}
+
+    .admin-button:hover {
+        background-color: #00472d;
+        color: #fff;
+        transition: background 0.2s linear;
+    }
 .detail-info {
     padding: .25em 2.75em;
 }
@@ -40,4 +51,20 @@ div.options {
     .detail-info {
         margin-left:2em;
     }
+}
+
+.center {
+    padding: 1em 0;
+    text-align: center;
+}
+
+    .center > img {
+        display: block;
+        margin: 1em auto;
+        width: 40%;
+    }
+
+#home {
+    background-color: #e6f2ff;
+    border: 3px solid #1a1aff;
 }

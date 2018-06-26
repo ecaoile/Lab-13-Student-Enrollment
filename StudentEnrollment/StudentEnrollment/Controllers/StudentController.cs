@@ -76,6 +76,8 @@ namespace StudentEnrollment.Controllers
         // GET: Student/Details/
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
+
             if (id == null)
             {
                 return NotFound();
@@ -94,6 +96,7 @@ namespace StudentEnrollment.Controllers
         // GET: Student/Edit/id#
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
             if (id == null)
             {
                 return NotFound();
@@ -110,7 +113,7 @@ namespace StudentEnrollment.Controllers
         // POST: Student/Edit/id#
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,EnrollmentTerm,CourseName")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,EnrollmentTerm,CourseID")] Student student)
         {
             if (id != student.ID)
             {

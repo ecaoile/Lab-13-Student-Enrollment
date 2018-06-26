@@ -15,8 +15,8 @@
 </div>
 
 <div class="detail-info">
-        <h4>Student</h4>
-        <hr />
+    <h4>Student</h4>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ID)
@@ -43,15 +43,15 @@
             @Html.DisplayFor(model => model.EnrollmentTerm)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CourseName)
+            @Html.DisplayNameFor(model => model.Course)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CourseName)
+            @Html.DisplayFor(model => model.Course.Name)
         </dd>
     </dl>
 </div>
-    <div class="options">
-        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
-    <hr/>
+<div class="options">
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<hr />

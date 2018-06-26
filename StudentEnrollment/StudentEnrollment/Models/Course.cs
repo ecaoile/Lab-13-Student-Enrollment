@@ -21,9 +21,9 @@ namespace StudentEnrollment.Models
 
     public enum CourseTerm
     {
-        Summer2018 = 1,
-        Fall2018,
-        Winter2018,
-        Spring2019
+        [Display(Name = "Summer 2018")] Summer2018 = 1,
+        [Display(Name = "Fall 2018")] Fall2018,
+        [Display(Name = "Winter 2018")] Winter2018,
+        [Display(Name = "Spring 2019")] Spring2019
     }
 }

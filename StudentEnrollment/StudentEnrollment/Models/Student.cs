@@ -11,7 +11,7 @@ namespace StudentEnrollment.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        [StringLength(60, MinimumLength = 3), Required]
         public string Name { get; set; }
 
         [Required]
@@ -25,6 +25,7 @@ namespace StudentEnrollment.Models
 
         public Course Course { get; set; }
 
+        [Required]
         public int CourseID { get; set; }
     }
 
