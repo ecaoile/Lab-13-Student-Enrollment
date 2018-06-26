@@ -1,4 +1,5 @@
 ﻿@model Student;
+
 @inject StudentEnrollment.Data.SchoolDbContext _context
 
 @{
@@ -38,6 +39,11 @@
                 </select>
                 <span asp-validation-for="EnrollmentTerm" class="text-danger"></span>
             </div>
+            @*@{
+                var courseList = new SelectList((IEnumerable<Course>
+                )@context, "ID", "Name", "Teacher", "CourseTerm");
+                courseList.Add(new SelectListItem() { Value = "", Text = "please choose a value" });
+            }*@
             <div class="form-group">
                 @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)@context, "ID", "Name", "Teacher", "CourseTerm")))
                 <span asp-validation-for="CourseID" class="text-danger"></span>
