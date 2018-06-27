@@ -1,0 +1,76 @@
+﻿.button {
+    background-color: #d4f0ec;
+    padding: .25em .5em;
+    margin: 0 1em;
+}
+
+.search, div.title {
+    padding: .5em 2.75em;
+}
+
+div > h4 {
+    margin-left: 2.25em;
+}
+.button:hover {
+    background-color: #0b5351;
+    color: #fff;
+    transition: background 0.2s ease-in-out;
+}
+
+.admin-button {
+    padding: .5em 1em;
+    margin: 1em;
+    border-radius: 5px;
+}
+
+    .admin-button:hover {
+        background-color: #00472d;
+        color: #fff;
+        transition: background 0.2s linear;
+    }
+.detail-info {
+    padding: .25em 2.75em;
+    display: table;
+}
+
+div.table-cont {
+    margin: 0 2em;
+}
+
+div.table-cont th {
+    text-align: center;
+}
+
+div.options {
+    margin-left:3.5em;
+}
+
+.create {
+    margin-left:3.5em;
+}
+@media only screen and (max-width: 765px){
+    .detail-info {
+        margin-left:2em;
+    }
+}
+
+.center {
+    padding: 1em 0;
+    text-align: center;
+}
+
+    .center > img {
+        display: block;
+        margin: 1em auto;
+        width: 40%;
+    }
+
+#home {
+    background-color: #e6f2ff;
+}
+
+.halfsies {
+    text-align: center;
+    width: 50%;
+    display: table-cell;
+}

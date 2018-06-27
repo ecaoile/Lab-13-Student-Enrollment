@@ -1,0 +1,59 @@
+﻿@model Student;
+
+@inject StudentEnrollment.Data.SchoolDbContext _context
+
+@{
+    var context = _context.Courses.Select(c => c).ToList();
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/base.css" type="text/css" />
+<link rel="stylesheet" href="~/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="~/css/modules.css" type="text/css" />
+
+<div class="title">
+    <h2>Create Student</h2>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4, create">
+        <form method="post" asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name:</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level">Level</label>
+                <select asp-for="Level" asp-items="Html.GetEnumSelectList<Level>()">
+                    <option value="">--- not specified ---</option>
+                </select>
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentTerm">Enrollment Term</label>
+                <select asp-for="EnrollmentTerm" asp-items="Html.GetEnumSelectList<EnrollmentTerm>()">
+                    <option value="">--- not specified ---</option>
+                </select>
+                <span asp-validation-for="EnrollmentTerm" class="text-danger"></span>
+            </div>
+            @*@{
+                var courseList = new SelectList((IEnumerable<Course>
+                )@context, "ID", "Name", "Teacher", "CourseTerm");
+                courseList.Add(new SelectListItem() { Value = "", Text = "please choose a value" });
+            }*@
+            <div class="form-group">
+                @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)@context, "ID", "Name", "Teacher", "CourseTerm")))
+                <span asp-validation-for="CourseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="options">
+    <a asp-action="Index">Back to List</a>
+</div>

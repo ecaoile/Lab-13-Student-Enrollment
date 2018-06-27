@@ -1,0 +1,46 @@
+﻿table {
+    background-color: #EFF6FE;
+    /*border: 1px solid #757575;*/
+    /*margin-left: auto;
+    margin-right: auto;*/
+    text-align: center;
+    position:relative;
+    margin: 0 auto;
+    width: 85vw;
+}
+
+table, th, td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+tr{
+    width: 30em;
+}
+/* unique font for data */
+td {
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    padding:1em 8vw;
+}
+
+th {
+    font-family: 'Noto Serif', serif;
+    font-size: 1.25em;
+    padding: 1em;
+}
+
+/* alternating colors for data rows */
+tr:nth-child(even) {
+    background-color: #CEE8FE;
+}
+
+th {
+    background-color: #CAD9EC;
+}
+
+/* highlights selected data cells */
+td:hover {
+    background-color: #ccffff;
+    transition: background 0.2s ease-in-out;
+}

@@ -1,0 +1,55 @@
+﻿@model Student;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/base.css" type="text/css" />
+<link rel="stylesheet" href="~/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="~/css/modules.css" type="text/css" />
+
+<div class="title">
+    <h2>Edit</h2>
+</div>
+<div class="row, edit">
+    <h4>Student</h4>
+    <hr />
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level">Level</label>
+                <select asp-for="Level" asp-items="Html.GetEnumSelectList<Level>()">
+                    <option value="">--- not specified ---</option>
+                </select>
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentTerm">Enrollment Term</label>
+                <select asp-for="EnrollmentTerm" asp-items="Html.GetEnumSelectList<EnrollmentTerm>()">
+                    <option value="">--- not specified ---</option>
+                </select>
+                <span asp-validation-for="EnrollmentTerm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseID">Course:</label>
+                @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)ViewData["Courses"], "ID", "Name", "Teacher", "CourseTerm")))
+                <span asp-validation-for="CourseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-default" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

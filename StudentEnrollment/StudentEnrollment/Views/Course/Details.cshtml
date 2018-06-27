@@ -1,0 +1,58 @@
+﻿@model CourseDetailViewModel;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/base.css" type="text/css" />
+<link rel="stylesheet" href="~/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="~/css/modules.css" type="text/css" />
+
+<div class="title">
+    <h2>Details</h2>
+</div>
+
+<div class="detail-info">
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+        <dd>
+            @Model.Course.ID
+        </dd>
+        <dt>
+            Name
+        </dt>
+        <dd>
+            @Model.Course.Name
+        </dd>
+        <dt>
+            Teacher
+        </dt>
+        <dd>
+            @Model.Course.Teacher
+        </dd>
+        <dt>
+            Course Term
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.CourseTerm)
+        </dd>
+        <dt>
+            Students
+        </dt>
+        @foreach (var s in Model.Students)
+        {
+            <dd>ID: @s.ID, Name: <a href="/Student/Details/@s.ID">@s.Name</a></dd>
+        }
+    </dl>
+</div>
+        <div class="options">
+        <a asp-action="Edit" asp-route-id="@Model.Course.ID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+<hr />
