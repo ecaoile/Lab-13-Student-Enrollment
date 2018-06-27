@@ -52,8 +52,6 @@ namespace StudentEnrollment.Controllers
         public async Task<IActionResult> Create()
         {
             ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
-            //var courseListingVM = await _context.Courses.Select(c => c).ToListAsync();
-
             return View();
         }
 
@@ -68,7 +66,8 @@ namespace StudentEnrollment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
+            // model injection available in the create page; below is the old alternative to carrying course list
+            //ViewData["Courses"] = await _context.Courses.Select(c => c).ToListAsync();
 
             return View(student);
         }

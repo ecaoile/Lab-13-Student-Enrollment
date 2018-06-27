@@ -136,10 +136,17 @@ namespace StudentEnrollment.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var course = await _context.Courses.FindAsync(id);
-            _context.Courses.Remove(course);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            int numOfStudents = _context.Students.Where(c => c.CourseID == id).Count();
+            if (numOfStudents == 0)
+            {
+                var course = await _context.Courses.FindAsync(id);
+                _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            // returns user back to index page if there are students in the course
+            return RedirectToAction("Index");
         }
 
         private bool CourseExists(int id)
