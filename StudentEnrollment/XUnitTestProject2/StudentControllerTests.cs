@@ -61,13 +61,6 @@ namespace XUnitTestProject2
                 student1.CourseID = 1;
                 student1.EnrollmentTerm = EnrollmentTerm.Summer2018;
 
-                //Student student2 = new Student();
-                //student2.ID = 3;
-                //student2.Name = "William Tester";
-                //student2.Level = Level.Graduate;
-                //student2.CourseID = 2;
-                //student2.EnrollmentTerm = EnrollmentTerm.Summer2018;
-
                 StudentController testSC = new StudentController(context);
 
                 var create1 = await testSC.Create(student1);
@@ -83,13 +76,7 @@ namespace XUnitTestProject2
                 var result1 = await context.Students.FirstOrDefaultAsync(s => s.Name == "Bill Test");
                 var result2 = await context.Students.FirstOrDefaultAsync(s => s.Name == "William Tester");
 
-                //var result2 = context.Students.Where(a => a.Name == "William Tester");
-
                 var result3 = testSC.Details(3);
-                //var viewResult = Assert.IsType<ViewResult>(result3);
-                //var model = Assert.IsAssignableFrom<IEnumerable<StudentListingViewModel>>(
-                //    viewResult.ViewData.Model);
-                //var result4 = result3.Result.GetType();
 
                 //Assert
                 Assert.Null(result1);
@@ -156,6 +143,9 @@ namespace XUnitTestProject2
             Assert.Equal(EnrollmentTerm.Summer2018, student.EnrollmentTerm);
         }
 
+        /// <summary>
+        /// tests for part of 7. Getters and Setters for all model properties
+        /// </summary>
         [Fact]
         public void StudentListingVMTest()
         {
@@ -200,6 +190,7 @@ namespace XUnitTestProject2
             Assert.Equal(student1, result1);
             Assert.Equal(student2, result2);
             Assert.NotNull(result3);
+            Assert.Equal("Biology", studentLVM.courseName);
         }
     }
 }
