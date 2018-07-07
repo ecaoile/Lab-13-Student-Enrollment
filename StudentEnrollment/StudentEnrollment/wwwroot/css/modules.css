@@ -4,7 +4,7 @@
     margin: 0 1em;
 }
 
-.search, div.title {
+.search, .title {
     padding: .5em 2.75em;
 }
 
@@ -41,7 +41,7 @@ div.table-cont th {
     text-align: center;
 }
 
-div.options {
+.options {
     margin-left:3.5em;
 }
 

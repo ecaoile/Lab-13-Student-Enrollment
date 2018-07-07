@@ -7,11 +7,13 @@
     ViewData["Title"] = "Create";
 }
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="~/css/normalize.css" type="text/css" />
 <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="~/css/base.css" type="text/css" />
 <link rel="stylesheet" href="~/css/layout.css" type="text/css" />
 <link rel="stylesheet" href="~/css/modules.css" type="text/css" />
+<title>Create a Student</title>
 
 <div class="title">
     <h2>Create Student</h2>
@@ -40,10 +42,10 @@
                 <span asp-validation-for="EnrollmentTerm" class="text-danger"></span>
             </div>
             @*@{
-                var courseList = new SelectList((IEnumerable<Course>
-                )@context, "ID", "Name", "Teacher", "CourseTerm");
-                courseList.Add(new SelectListItem() { Value = "", Text = "please choose a value" });
-            }*@
+                    var courseList = new SelectList((IEnumerable<Course>
+                    )@context, "ID", "Name", "Teacher", "CourseTerm");
+                    courseList.Add(new SelectListItem() { Value = "", Text = "please choose a value" });
+                }*@
             <div class="form-group">
                 @(Html.DropDownListFor(m => m.CourseID, new SelectList((IEnumerable<Course>)@context, "ID", "Name", "Teacher", "CourseTerm")))
                 <span asp-validation-for="CourseID" class="text-danger"></span>
