@@ -185,11 +185,11 @@ namespace XUnitTestProject2
             var result1 = studentLVM.students.FirstOrDefault(s => s.ID == 4);
             var result2 = studentLVM.students.FirstOrDefault(s => s.ID == 5);
 
-            var result3 = studentLVM.courses.Items;
+            var result3 = studentLVM.courses.ToList();
 
             Assert.Equal(student1, result1);
             Assert.Equal(student2, result2);
-            Assert.NotNull(result3);
+            Assert.Equal(2, result3.Count());
             Assert.Equal("Biology", studentLVM.courseName);
         }
     }
