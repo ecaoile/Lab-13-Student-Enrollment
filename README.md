@@ -1,9 +1,9 @@
-# Lab-13-Student-Enrollment
+# Lab 13: Student Enrollment
 - CODE: Student Enrollment assignment for Code Fellows 401 C#/.NET course
 - Website Link: http://studentenrollment20180626022941.azurewebsites.net/
 
 **Author**: Earl Jay Caoile <br />
-**Version**: 1.0.0
+**Version**: 1.1.0
 
 ## Overview
 This MVC web application allows users to look at a list of courses and students.
